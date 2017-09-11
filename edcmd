@@ -1,0 +1,19 @@
+#!/bin/bash
+cd /mysql-server && ed ./CMakeLists.txt <<END
+15i
+SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+SET(BUILD_SHARED_LIBRARIES OFF)
+SET(CMAKE_EXE_LINKER_FLAGS "-static")
+.
+w
+q
+END
+cd /mysql-server/client && ed ./CMakeLists.txt <<END
+14i
+SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+SET(BUILD_SHARED_LIBRARIES OFF)
+SET(CMAKE_EXE_LINKER_FLAGS "-static")
+.
+w
+q
+END
